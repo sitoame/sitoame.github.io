@@ -1,0 +1,165 @@
+{
+  "profile": {
+    "name": "Amed Murillo Estrada",
+    "role": "Ingeniero Electromecánico · Ingeniero BMS",
+    "tagline": "Optimizo edificios inteligentes combinando control BMS, eficiencia energética y automatización confiable.",
+    "location": "Ubicación: [Ciudad, País]",
+    "bio": "Ingeniero Electromecánico enfocado en Building Management Systems, HVAC y automatización de infraestructura crítica. Especializado en integrar sensores, tableros eléctricos y protocolos industriales para garantizar operaciones resilientes.",
+    "contact": {
+      "email": "amed@example.com",
+      "phone": "+00 000 000 000",
+      "linkedin": "https://www.linkedin.com/in/amed-murillo",
+      "github": "https://github.com/amed-murillo"
+    },
+    "highlights": [
+      {
+        "title": "Control integral",
+        "description": "Supervisión de HVAC, energía y seguridad en una sola plataforma BMS."
+      },
+      {
+        "title": "Automatización inteligente",
+        "description": "Lógicas PLC, secuencias de control y estrategias de eficiencia energética."
+      },
+      {
+        "title": "Operación crítica",
+        "description": "Monitoreo 24/7 con alarmas proactivas y análisis predictivo."
+      }
+    ]
+  },
+  "skills": [
+    {
+      "category": "BMS & HVAC",
+      "items": [
+        { "name": "Tridium Niagara", "level": "Avanzado" },
+        { "name": "HVAC", "level": "Avanzado" },
+        { "name": "Balanceo energético", "level": "Intermedio" }
+      ]
+    },
+    {
+      "category": "Automatización",
+      "items": [
+        { "name": "PLC", "level": "Avanzado" },
+        { "name": "SCADA", "level": "Intermedio" },
+        "Secuencias de control",
+        "Instrumentación"
+      ]
+    },
+    {
+      "category": "Redes & Protocolos",
+      "items": [
+        { "name": "BACnet", "level": "Avanzado" },
+        { "name": "Modbus", "level": "Avanzado" },
+        "KNX",
+        "TCP/IP Industrial"
+      ]
+    },
+    {
+      "category": "Software",
+      "items": [
+        { "name": "Python", "level": "Intermedio" },
+        { "name": "JavaScript", "level": "Intermedio" },
+        "AutoCAD",
+        "MS Project"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "period": "2022 - Actual",
+      "title": "Ingeniero BMS",
+      "company": "[Empresa actual]",
+      "summary": "Gestión de sistemas de control centralizado, puesta en marcha de HVAC y optimización energética en edificios corporativos."
+    },
+    {
+      "period": "2019 - 2022",
+      "title": "Especialista Electromecánico",
+      "company": "[Empresa anterior]",
+      "summary": "Implementación de planes de mantenimiento predictivo y coordinación de tableros de automatización."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Certificación BMS",
+      "issuer": "[Institución]",
+      "year": "2023"
+    },
+    {
+      "name": "Eficiencia energética en edificios",
+      "issuer": "[Institución]",
+      "year": "2021"
+    }
+  ],
+  "projects": [
+    {
+      "id": "bms-torre-corporativa",
+      "title": "BMS para torre corporativa",
+      "description": "Integración de HVAC, iluminación y seguridad con dashboards unificados.",
+      "longDescription": "Sistema BMS centralizado para una torre corporativa, con monitoreo en tiempo real, alarmas críticas y analítica de consumo.",
+      "challenges": "Sincronizar múltiples protocolos en una infraestructura existente sin detener operaciones.",
+      "solution": "Gateway BACnet/Modbus con lógica de redundancia y paneles con KPIs clave.",
+      "impact": "Reducción del 18% en consumo energético y mejora del tiempo de respuesta a fallas.",
+      "stack": ["BACnet", "Niagara", "Power BI", "SQL"],
+      "categories": ["BMS", "HVAC"],
+      "links": [
+        { "label": "Ficha técnica", "url": "https://example.com" },
+        { "label": "Dashboard", "url": "https://example.com" }
+      ]
+    },
+    {
+      "id": "laboratorio-automatizacion",
+      "title": "Laboratorio de automatización industrial",
+      "description": "Banco de pruebas para PLC y sensores con protocolos industriales.",
+      "longDescription": "Diseño de un laboratorio modular para validar controladores, sensores y estrategias de mantenimiento predictivo.",
+      "challenges": "Escalar pruebas sin comprometer seguridad eléctrica.",
+      "solution": "Tablero modular con protección selectiva y simuladores de carga.",
+      "impact": "Aceleración del 30% en tiempos de prueba y documentación.",
+      "stack": ["PLC", "Modbus", "SCADA"],
+      "categories": ["Automatización", "I+D"],
+      "links": [
+        { "label": "Procedimientos", "url": "https://example.com" }
+      ]
+    },
+    {
+      "id": "monitoreo-energia",
+      "title": "Monitoreo energético inteligente",
+      "description": "Lectura remota de medidores y alertas de eficiencia.",
+      "longDescription": "Sistema de monitoreo energético con reportes automatizados para equipos críticos y cargas HVAC.",
+      "challenges": "Normalizar datos en tiempo real con múltiples medidores.",
+      "solution": "Pipeline de datos con dashboards e indicadores de desempeño.",
+      "impact": "Identificación de pérdidas energéticas y ajustes de control.",
+      "stack": ["IoT", "BACnet", "Data Studio"],
+      "categories": ["Energía", "BMS"],
+      "links": [
+        { "label": "Reporte", "url": "https://example.com" }
+      ]
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Sala de control",
+      "description": "Paneles con alertas jerarquizadas y KPIs en tiempo real.",
+      "tag": "BMS"
+    },
+    {
+      "title": "Mantenimiento predictivo",
+      "description": "Monitoreo de vibraciones y temperatura en equipos críticos.",
+      "tag": "HVAC"
+    },
+    {
+      "title": "Planos técnicos",
+      "description": "Esquemas unifilares y layout de tableros para automatización.",
+      "tag": "Automatización"
+    }
+  ],
+  "contact": {
+    "message": "Disponible para proyectos de implementación BMS, commissioning y optimización energética.",
+    "channels": [
+      { "label": "Correo", "url": "mailto:amed@example.com" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/amed-murillo" }
+    ]
+  },
+  "footerLinks": [
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/amed-murillo" },
+    { "label": "GitHub", "url": "https://github.com/amed-murillo" }
+  ]
+}

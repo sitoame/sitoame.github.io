@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amed Murillo Estrada | Ingeniero Electromecánico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-dark">
+  <header class="site-header">
+    <div class="container nav">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span class="logo-text">Amed Murillo</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">Sobre mí</a>
+        <a href="#skills">Habilidades</a>
+        <a href="#experience">Experiencia</a>
+        <a href="#certifications">Certificaciones</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#contact">Contacto</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn ghost" type="button">Modo claro</button>
+        <button id="printBtn" class="btn" type="button">Imprimir / Guardar PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow" data-profile="location"></p>
+          <h1 data-profile="name"></h1>
+          <h2 data-profile="role"></h2>
+          <p class="tagline" data-profile="tagline"></p>
+          <div class="cta-row">
+            <a class="btn" href="#projects">Ver proyectos</a>
+            <button class="btn ghost" type="button" id="downloadCv">Descargar CV / Imprimir</button>
+          </div>
+          <div class="meta" data-profile="contact"></div>
+        </div>
+        <div class="hero-lab">
+          <div class="lab-header">
+            <h3>Laboratorio BMS</h3>
+            <p>Modelo conceptual de sala de control inteligente.</p>
+            <button class="btn ghost" id="toggle3d" type="button">3D: ON</button>
+          </div>
+          <div class="lab-canvas" id="labCanvas"></div>
+          <div class="lab-tooltips" id="labTooltips"></div>
+        </div>
+      </div>
+      <div class="hero-gridlines"></div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Sobre mí</h2>
+          <p data-profile="bio"></p>
+        </div>
+        <div class="about-grid" data-profile="highlights"></div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Habilidades</h2>
+          <p>Capacidades técnicas para edificios inteligentes, automatización y mantenimiento predictivo.</p>
+        </div>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Experiencia</h2>
+          <p>Trayectoria alineada con operación eficiente, control centralizado y confiabilidad energética.</p>
+        </div>
+        <div class="timeline" id="experienceTimeline"></div>
+      </div>
+    </section>
+
+    <section class="section" id="certifications">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Certificaciones</h2>
+          <p>Formación continua en automatización, eficiencia energética y seguridad operativa.</p>
+        </div>
+        <div class="cards-grid" id="certificationsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Proyectos</h2>
+          <p>Soluciones escalables para edificios inteligentes, HVAC y automatización industrial.</p>
+        </div>
+        <div class="filters">
+          <input type="search" id="projectSearch" placeholder="Buscar por palabra clave..." aria-label="Buscar proyectos" />
+          <div class="filter-tags" id="projectFilters"></div>
+        </div>
+        <div class="cards-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Galería / Casos de estudio</h2>
+          <p>Snapshots operativos y visualización de métricas críticas.</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Contacto</h2>
+          <p>¿Listo para integrar un sistema BMS más inteligente? Conectemos.</p>
+        </div>
+        <div class="contact-grid">
+          <form class="contact-form" id="contactForm">
+            <label>
+              Nombre
+              <input type="text" name="name" placeholder="Tu nombre" required />
+            </label>
+            <label>
+              Correo
+              <input type="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+            </label>
+            <label>
+              Mensaje
+              <textarea name="message" rows="4" placeholder="Cuéntame sobre tu proyecto" required></textarea>
+            </label>
+            <button class="btn" type="submit">Enviar correo</button>
+            <p class="form-note">Se abrirá tu cliente de correo. No se guarda información.</p>
+          </form>
+          <div class="contact-panel" id="contactPanel"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-title">Amed Murillo Estrada</p>
+        <p>Ingeniero Electromecánico · Especialista BMS</p>
+      </div>
+      <div class="footer-links" id="footerLinks"></div>
+    </div>
+  </footer>
+
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close="true" aria-label="Cerrar">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
