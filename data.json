@@ -3,17 +3,17 @@
     "name": "Amed Murillo Estrada",
     "role": "Ingeniero Electromecánico · Ingeniero BMS",
     "tagline": "Optimizo edificios inteligentes combinando control BMS, eficiencia energética y automatización confiable.",
-    "location": "Ubicación: [Ciudad, País]",
+    "location": "Panamá, Ciudad de Panamá",
     "bio": "Ingeniero Electromecánico enfocado en Building Management Systems, HVAC y automatización de infraestructura crítica. Especializado en integrar sensores, tableros eléctricos y protocolos industriales para garantizar operaciones resilientes.",
     "contact": {
-      "email": "amed@example.com",
-      "phone": "+00 000 000 000",
-      "linkedin": "https://www.linkedin.com/in/amed-murillo",
-      "github": "https://github.com/amed-murillo"
+      "email": "amedmurilloe@gmail.com",
+      "phone": "+507 6328-6927",
+      "linkedin": "https://www.linkedin.com/in/amed-murillo-estrada-a84397267/",
+      "github": "https://github.com/sitoame"
     },
     "highlights": [
       {
-        "title": "Control integral",
+        "title": "Monitoreo, control y automatización",
         "description": "Supervisión de HVAC, energía y seguridad en una sola plataforma BMS."
       },
       {
@@ -30,9 +30,7 @@
     {
       "category": "BMS & HVAC",
       "items": [
-        { "name": "Tridium Niagara", "level": "Avanzado" },
-        { "name": "HVAC", "level": "Avanzado" },
-        { "name": "Balanceo energético", "level": "Intermedio" }
+        { "name": "Contemporary Controls", "level": "Avanzado" },
       ]
     },
     {
@@ -59,22 +57,15 @@
         { "name": "Python", "level": "Intermedio" },
         { "name": "JavaScript", "level": "Intermedio" },
         "AutoCAD",
-        "MS Project"
       ]
     }
   ],
   "experience": [
     {
-      "period": "2022 - Actual",
+      "period": "2024 - Actual",
       "title": "Ingeniero BMS",
-      "company": "[Empresa actual]",
-      "summary": "Gestión de sistemas de control centralizado, puesta en marcha de HVAC y optimización energética en edificios corporativos."
-    },
-    {
-      "period": "2019 - 2022",
-      "title": "Especialista Electromecánico",
-      "company": "[Empresa anterior]",
-      "summary": "Implementación de planes de mantenimiento predictivo y coordinación de tableros de automatización."
+      "company": "Dynatek",
+      "summary": "Gestión de sistemas de control centralizado, puesta en marcha de HVAC y optimización energética en edificios."
     }
   ],
   "certifications": [
@@ -91,11 +82,11 @@
   ],
   "projects": [
     {
-      "id": "bms-torre-corporativa",
-      "title": "BMS para torre corporativa",
-      "description": "Integración de HVAC, iluminación y seguridad con dashboards unificados.",
-      "longDescription": "Sistema BMS centralizado para una torre corporativa, con monitoreo en tiempo real, alarmas críticas y analítica de consumo.",
-      "challenges": "Sincronizar múltiples protocolos en una infraestructura existente sin detener operaciones.",
+      "id": "bms-organo-judicial",
+      "title": "BMS unidades manejadoras de aire - Organo Judicial",
+      "description": "Integración de HVAC.",
+      "longDescription": "Sistema BMS centralizado para 4 unidades manejadoras de aire.",
+      "challenges": "Adaptar equipos no diseñados nativamente para un integración BMS.",
       "solution": "Gateway BACnet/Modbus con lógica de redundancia y paneles con KPIs clave.",
       "impact": "Reducción del 18% en consumo energético y mejora del tiempo de respuesta a fallas.",
       "stack": ["BACnet", "Niagara", "Power BI", "SQL"],
