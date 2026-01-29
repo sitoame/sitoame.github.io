@@ -499,7 +499,7 @@ const init3DToggle = () => {
 };
 
 const initApp = async () => {
-  const response = await fetch("data.json");
+  const response = await fetch("data.json", { cache: "no-store" });
   state.data = await response.json();
 
   renderProfile(state.data.profile);
