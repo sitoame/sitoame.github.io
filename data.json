@@ -30,7 +30,7 @@
     {
       "category": "BMS & HVAC",
       "items": [
-        { "name": "Contemporary Controls", "level": "Avanzado" },
+        { "name": "Contemporary Controls", "level": "Avanzado" }
       ]
     },
     {
@@ -56,7 +56,7 @@
       "items": [
         { "name": "Python", "level": "Intermedio" },
         { "name": "JavaScript", "level": "Intermedio" },
-        "AutoCAD",
+        "AutoCAD"
       ]
     }
   ],
