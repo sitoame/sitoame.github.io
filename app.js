@@ -1,6 +1,3 @@
-import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
-import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
-
 const state = {
   data: null,
   activeFilter: "All",
@@ -13,6 +10,8 @@ const state = {
   raycaster: null,
   tooltipTargets: [],
   animationId: null,
+  threeModule: null,
+  orbitControls: null,
 };
 
 const selectors = {
@@ -328,11 +327,31 @@ const initTooltips = () => {
   setActiveTooltip("BMS");
 };
 
-const init3DScene = () => {
+const init3DScene = async () => {
   if (!state.is3dEnabled) {
     selectors.labCanvas.innerHTML = "";
     return;
   }
+
+  if (!state.threeModule || !state.orbitControls) {
+    try {
+      const [{ default: THREE }, { OrbitControls }] = await Promise.all([
+        import("https://unpkg.com/three@0.160.0/build/three.module.js"),
+        import("https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js"),
+      ]);
+      state.threeModule = THREE;
+      state.orbitControls = OrbitControls;
+    } catch (error) {
+      console.error("No se pudo cargar la escena 3D.", error);
+      state.is3dEnabled = false;
+      selectors.toggle3d.textContent = "3D: OFF";
+      selectors.labCanvas.innerHTML = "";
+      return;
+    }
+  }
+
+  const THREE = state.threeModule;
+  const OrbitControls = state.orbitControls;
 
   const width = selectors.labCanvas.clientWidth;
   const height = selectors.labCanvas.clientHeight;
@@ -487,11 +506,11 @@ const init3DToggle = () => {
   state.is3dEnabled = !(prefersReduced || isMobile);
   selectors.toggle3d.textContent = state.is3dEnabled ? "3D: ON" : "3D: OFF";
 
-  selectors.toggle3d.addEventListener("click", () => {
+  selectors.toggle3d.addEventListener("click", async () => {
     state.is3dEnabled = !state.is3dEnabled;
     selectors.toggle3d.textContent = state.is3dEnabled ? "3D: ON" : "3D: OFF";
     if (state.is3dEnabled) {
-      init3DScene();
+      await init3DScene();
     } else {
       destroy3DScene();
     }
@@ -521,7 +540,7 @@ const initApp = async () => {
   initTooltips();
   init3DToggle();
   if (state.is3dEnabled) {
-    init3DScene();
+    await init3DScene();
   }
 };
 
