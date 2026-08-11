@@ -41,18 +41,21 @@
           <p class="tagline" data-profile="tagline"></p>
           <div class="cta-row">
             <a class="btn" href="#projects">Ver proyectos</a>
-            <button class="btn ghost" type="button" id="downloadCv">Descargar CV / Imprimir</button>
+            <a class="btn ghost" href="curriculum/AMED%20MURILLO%20ESTRADA.pdf" download id="downloadCv">Descargar CV</a>
           </div>
           <div class="meta" data-profile="contact"></div>
         </div>
         <div class="hero-lab">
           <div class="lab-header">
-            <h3>Laboratorio BMS</h3>
-            <p>Modelo conceptual de sala de control inteligente.</p>
-            <button class="btn ghost" id="toggle3d" type="button">3D: ON</button>
+            <div>
+              <h3>Osciloscopio BMS</h3>
+              <p>Señales simuladas para diagnóstico HVAC y automatización.</p>
+            </div>
+            <button class="btn ghost" id="scopePause" type="button">Pausar</button>
           </div>
-          <div class="lab-canvas" id="labCanvas"></div>
-          <div class="lab-tooltips" id="labTooltips"></div>
+          <div class="scope-toolbar" id="scopeSignals"></div>
+          <canvas class="lab-canvas" id="labCanvas" width="760" height="360" aria-label="Osciloscopio BMS con señales simuladas"></canvas>
+          <div class="scope-readouts" id="scopeReadouts"></div>
         </div>
       </div>
       <div class="hero-gridlines"></div>
@@ -126,25 +129,9 @@
       <div class="container">
         <div class="section-heading">
           <h2>Contacto</h2>
-          <p>¿Listo para integrar un sistema BMS más inteligente? Conectemos.</p>
+          <p>Información profesional para reclutadores y empleadores.</p>
         </div>
-        <div class="contact-grid">
-          <form class="contact-form" id="contactForm">
-            <label>
-              Nombre
-              <input type="text" name="name" placeholder="Tu nombre" required />
-            </label>
-            <label>
-              Correo
-              <input type="email" name="email" placeholder="tucorreo@ejemplo.com" required />
-            </label>
-            <label>
-              Mensaje
-              <textarea name="message" rows="4" placeholder="Cuéntame sobre tu proyecto" required></textarea>
-            </label>
-            <button class="btn" type="submit">Enviar correo</button>
-            <p class="form-note">Se abrirá tu cliente de correo. No se guarda información.</p>
-          </form>
+        <div class="contact-grid employer-contact">
           <div class="contact-panel" id="contactPanel"></div>
         </div>
       </div>

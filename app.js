@@ -2,16 +2,13 @@ const state = {
   data: null,
   activeFilter: "All",
   searchTerm: "",
-  is3dEnabled: true,
-  renderer: null,
-  scene: null,
-  camera: null,
-  controls: null,
-  raycaster: null,
-  tooltipTargets: [],
-  animationId: null,
-  threeModule: null,
-  orbitControls: null,
+  scope: {
+    activeSignal: "temp",
+    isPaused: false,
+    startedAt: 0,
+    animationId: null,
+    samples: [],
+  },
 };
 
 const selectors = {
@@ -36,10 +33,10 @@ const selectors = {
   themeToggle: document.getElementById("themeToggle"),
   printBtn: document.getElementById("printBtn"),
   downloadCv: document.getElementById("downloadCv"),
-  contactForm: document.getElementById("contactForm"),
-  toggle3d: document.getElementById("toggle3d"),
   labCanvas: document.getElementById("labCanvas"),
-  labTooltips: document.getElementById("labTooltips"),
+  scopePause: document.getElementById("scopePause"),
+  scopeSignals: document.getElementById("scopeSignals"),
+  scopeReadouts: document.getElementById("scopeReadouts"),
 };
 
 const buildContactLine = (label, value, link) => {
@@ -223,7 +220,7 @@ const closeModal = () => {
 
 const renderContactPanel = (contact) => {
   selectors.contactPanel.innerHTML = `
-    <h3>Canales directos</h3>
+    <h3>Contacto profesional</h3>
     <p>${contact.message}</p>
     <div class="project-meta">
       ${contact.channels
@@ -254,26 +251,7 @@ const initThemeToggle = () => {
 };
 
 const initPrintButtons = () => {
-  const handlePrint = () => window.print();
-  selectors.printBtn.addEventListener("click", handlePrint);
-  selectors.downloadCv.addEventListener("click", handlePrint);
-};
-
-const initContactForm = (email) => {
-  selectors.contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const formData = new FormData(selectors.contactForm);
-    const subject = encodeURIComponent("Nuevo contacto desde portafolio");
-    const body = encodeURIComponent(
-      `Nombre: ${formData.get("name")}
-Correo: ${formData.get("email")}
-
-Mensaje:
-${formData.get("message")}`
-    );
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-    selectors.contactForm.reset();
-  });
+  selectors.printBtn.addEventListener("click", () => window.print());
 };
 
 const initProjectInteractions = () => {
@@ -305,216 +283,179 @@ const initProjectInteractions = () => {
   });
 };
 
-const createTooltipTag = (text) => {
-  const tag = document.createElement("span");
-  tag.className = "tooltip-tag";
-  tag.textContent = text;
-  tag.dataset.label = text;
-  return tag;
+const scopeSignals = [
+  {
+    id: "temp",
+    label: "TEMP SUPPLY",
+    unit: "degC",
+    min: 12,
+    max: 22,
+    color: "#2de2d0",
+    sample: (t) => 16.5 + Math.sin(t * 1.4) * 1.1 + Math.sin(t * 4.5) * 0.18,
+  },
+  {
+    id: "pressure",
+    label: "STATIC PRESS",
+    unit: "inH2O",
+    min: 0,
+    max: 2.5,
+    color: "#ffd166",
+    sample: (t) => 1.25 + Math.sin(t * 2.1) * 0.22 + Math.sin(t * 9.0) * 0.04,
+  },
+  {
+    id: "valve",
+    label: "AO VALVE CMD",
+    unit: "VDC",
+    min: 0,
+    max: 10,
+    color: "#8be9fd",
+    sample: (t) => 5 + Math.sin(t * 0.9) * 3.2 + Math.max(0, Math.sin(t * 2.8)) * 0.7,
+  },
+  {
+    id: "current",
+    label: "SENSOR LOOP",
+    unit: "mA",
+    min: 4,
+    max: 20,
+    color: "#ff79c6",
+    sample: (t) => 12 + Math.sin(t * 1.2) * 5.3 + Math.sin(t * 7.2) * 0.35,
+  },
+];
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+const getActiveScopeSignal = () =>
+  scopeSignals.find((signal) => signal.id === state.scope.activeSignal) || scopeSignals[0];
+
+const formatScopeValue = (value, signal) => `${value.toFixed(signal.unit === "degC" ? 1 : 2)} ${signal.unit}`;
+
+const resizeScopeCanvas = () => {
+  const canvas = selectors.labCanvas;
+  const rect = canvas.getBoundingClientRect();
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.max(320, Math.floor(rect.width * pixelRatio));
+  canvas.height = Math.max(220, Math.floor(rect.height * pixelRatio));
 };
 
-const setActiveTooltip = (label) => {
-  [...selectors.labTooltips.children].forEach((tag) => {
-    tag.classList.toggle("active", tag.dataset.label === label);
-  });
-};
+const drawScopeGrid = (ctx, width, height) => {
+  ctx.fillStyle = "#081018";
+  ctx.fillRect(0, 0, width, height);
 
-const initTooltips = () => {
-  selectors.labTooltips.innerHTML = "";
-  ["BMS", "Automatización", "Código"].forEach((label) => {
-    selectors.labTooltips.appendChild(createTooltipTag(label));
-  });
-  setActiveTooltip("BMS");
-};
+  ctx.strokeStyle = "rgba(45, 226, 208, 0.09)";
+  ctx.lineWidth = 1;
+  const columns = 10;
+  const rows = 8;
 
-const init3DScene = async () => {
-  if (!state.is3dEnabled) {
-    selectors.labCanvas.innerHTML = "";
-    return;
+  for (let i = 0; i <= columns; i += 1) {
+    const x = (width / columns) * i;
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+    ctx.stroke();
   }
 
-  if (!state.threeModule || !state.orbitControls) {
-    try {
-      const [{ default: THREE }, { OrbitControls }] = await Promise.all([
-        import("https://unpkg.com/three@0.160.0/build/three.module.js"),
-        import("https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js"),
-      ]);
-      state.threeModule = THREE;
-      state.orbitControls = OrbitControls;
-    } catch (error) {
-      console.error("No se pudo cargar la escena 3D.", error);
-      state.is3dEnabled = false;
-      selectors.toggle3d.textContent = "3D: OFF";
-      selectors.labCanvas.innerHTML = "";
-      return;
-    }
+  for (let i = 0; i <= rows; i += 1) {
+    const y = (height / rows) * i;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(width, y);
+    ctx.stroke();
   }
 
-  const THREE = state.threeModule;
-  const OrbitControls = state.orbitControls;
-
-  const width = selectors.labCanvas.clientWidth;
-  const height = selectors.labCanvas.clientHeight;
-
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0c121a);
-
-  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-  camera.position.set(5, 4, 6);
-
-  const renderer = new THREE.WebGLRenderer({ antialias: width > 600, alpha: true });
-  renderer.setSize(width, height);
-  renderer.setPixelRatio(window.devicePixelRatio > 1.5 ? 1.5 : window.devicePixelRatio);
-  selectors.labCanvas.innerHTML = "";
-  selectors.labCanvas.appendChild(renderer.domElement);
-
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.minDistance = 3.5;
-  controls.maxDistance = 10;
-
-  const ambient = new THREE.AmbientLight(0x7cf5ff, 0.6);
-  scene.add(ambient);
-
-  const keyLight = new THREE.DirectionalLight(0x00d0c5, width > 600 ? 0.9 : 0.6);
-  keyLight.position.set(5, 6, 2);
-  scene.add(keyLight);
-
-  const panelGeometry = new THREE.BoxGeometry(6, 0.3, 4);
-  const panelMaterial = new THREE.MeshStandardMaterial({ color: 0x16212b, metalness: 0.6, roughness: 0.4 });
-  const panel = new THREE.Mesh(panelGeometry, panelMaterial);
-  panel.position.y = -0.2;
-  scene.add(panel);
-
-  const towerGeometry = new THREE.BoxGeometry(1, 2.2, 1);
-  const towerMaterial = new THREE.MeshStandardMaterial({ color: 0x1b2a36, metalness: 0.7, roughness: 0.3 });
-  const tower = new THREE.Mesh(towerGeometry, towerMaterial);
-  tower.position.set(-1.8, 0.9, -0.8);
-  scene.add(tower);
-
-  const coilGeometry = new THREE.TorusGeometry(0.6, 0.18, 16, 60);
-  const coilMaterial = new THREE.MeshStandardMaterial({ color: 0x2de2d0, emissive: 0x0c4f4f });
-  const coil = new THREE.Mesh(coilGeometry, coilMaterial);
-  coil.position.set(1.5, 0.6, 0.9);
-  coil.rotation.x = Math.PI / 2;
-  scene.add(coil);
-
-  const coreGeometry = new THREE.CylinderGeometry(0.35, 0.35, 1.4, 18);
-  const coreMaterial = new THREE.MeshStandardMaterial({ color: 0x0f6b6b, metalness: 0.2, roughness: 0.6 });
-  const core = new THREE.Mesh(coreGeometry, coreMaterial);
-  core.position.set(1.5, 0.7, 0.9);
-  scene.add(core);
-
-  const nodeGeometry = new THREE.SphereGeometry(0.2, 24, 24);
-  const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0x00d0c5, emissive: 0x003e3b });
-  const nodeA = new THREE.Mesh(nodeGeometry, nodeMaterial);
-  nodeA.position.set(0.2, 0.5, -1.1);
-  const nodeB = nodeA.clone();
-  nodeB.position.set(-0.8, 0.5, 1.1);
-  const nodeC = nodeA.clone();
-  nodeC.position.set(2.2, 0.5, -0.6);
-  scene.add(nodeA, nodeB, nodeC);
-
-  const lineMaterial = new THREE.LineBasicMaterial({ color: 0x1ddbbf });
-  const lineGeometry = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(0.2, 0.5, -1.1),
-    new THREE.Vector3(1.5, 0.6, 0.9),
-  ]);
-  const line = new THREE.Line(lineGeometry, lineMaterial);
-  scene.add(line);
-
-  const raycaster = new THREE.Raycaster();
-  const tooltipTargets = [
-    { mesh: tower, label: "BMS" },
-    { mesh: coil, label: "Automatización" },
-    { mesh: nodeA, label: "Código" },
-  ];
-
-  const onPointerMove = (event) => {
-    const rect = renderer.domElement.getBoundingClientRect();
-    const pointer = new THREE.Vector2(
-      ((event.clientX - rect.left) / rect.width) * 2 - 1,
-      -((event.clientY - rect.top) / rect.height) * 2 + 1
-    );
-    raycaster.setFromCamera(pointer, camera);
-    const hits = raycaster.intersectObjects(tooltipTargets.map((item) => item.mesh));
-    document.body.style.cursor = hits.length ? "pointer" : "default";
-  };
-
-  const onClick = (event) => {
-    const rect = renderer.domElement.getBoundingClientRect();
-    const pointer = new THREE.Vector2(
-      ((event.clientX - rect.left) / rect.width) * 2 - 1,
-      -((event.clientY - rect.top) / rect.height) * 2 + 1
-    );
-    raycaster.setFromCamera(pointer, camera);
-    const hits = raycaster.intersectObjects(tooltipTargets.map((item) => item.mesh));
-    if (hits.length) {
-      const target = tooltipTargets.find((item) => item.mesh === hits[0].object);
-      if (target) {
-        setActiveTooltip(target.label);
-      }
-    }
-  };
-
-  renderer.domElement.addEventListener("pointermove", onPointerMove);
-  renderer.domElement.addEventListener("click", onClick);
-
-  const animate = () => {
-    coil.rotation.z += 0.01;
-    tower.rotation.y += 0.003;
-    controls.update();
-    renderer.render(scene, camera);
-    state.animationId = requestAnimationFrame(animate);
-  };
-  animate();
-
-  state.renderer = renderer;
-  state.scene = scene;
-  state.camera = camera;
-  state.controls = controls;
-  state.raycaster = raycaster;
-  state.tooltipTargets = tooltipTargets;
-
-  window.addEventListener("resize", () => {
-    if (!state.renderer) return;
-    const newWidth = selectors.labCanvas.clientWidth;
-    const newHeight = selectors.labCanvas.clientHeight;
-    camera.aspect = newWidth / newHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(newWidth, newHeight);
-  });
+  ctx.strokeStyle = "rgba(45, 226, 208, 0.22)";
+  ctx.beginPath();
+  ctx.moveTo(0, height / 2);
+  ctx.lineTo(width, height / 2);
+  ctx.stroke();
 };
 
-const destroy3DScene = () => {
-  if (state.animationId) {
-    cancelAnimationFrame(state.animationId);
-  }
-  if (state.renderer) {
-    state.renderer.dispose();
-  }
-  selectors.labCanvas.innerHTML = "";
-  state.renderer = null;
-  state.scene = null;
-  state.camera = null;
-  state.controls = null;
+const renderScopeReadouts = (signal, samples) => {
+  const latest = samples.at(-1)?.value ?? signal.sample(0);
+  const values = samples.map((sample) => sample.value);
+  const min = values.length ? Math.min(...values) : latest;
+  const max = values.length ? Math.max(...values) : latest;
+  const status = state.scope.isPaused ? "HOLD" : "LIVE";
+
+  selectors.scopeReadouts.innerHTML = `
+    <div><span>Signal</span><strong>${signal.label}</strong></div>
+    <div><span>Value</span><strong>${formatScopeValue(latest, signal)}</strong></div>
+    <div><span>Range</span><strong>${formatScopeValue(min, signal)} - ${formatScopeValue(max, signal)}</strong></div>
+    <div><span>Status</span><strong>${status} · BACnet/IP OK</strong></div>
+  `;
 };
 
-const init3DToggle = () => {
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const isMobile = window.innerWidth < 680;
-  state.is3dEnabled = !(prefersReduced || isMobile);
-  selectors.toggle3d.textContent = state.is3dEnabled ? "3D: ON" : "3D: OFF";
+const drawScopeTrace = (ctx, signal, samples, width, height) => {
+  if (samples.length < 2) return;
 
-  selectors.toggle3d.addEventListener("click", async () => {
-    state.is3dEnabled = !state.is3dEnabled;
-    selectors.toggle3d.textContent = state.is3dEnabled ? "3D: ON" : "3D: OFF";
-    if (state.is3dEnabled) {
-      await init3DScene();
+  ctx.strokeStyle = signal.color;
+  ctx.lineWidth = Math.max(2, width / 380);
+  ctx.shadowBlur = 12;
+  ctx.shadowColor = signal.color;
+  ctx.beginPath();
+
+  samples.forEach((sample, index) => {
+    const ratio = (sample.value - signal.min) / (signal.max - signal.min);
+    const x = (index / (samples.length - 1)) * width;
+    const y = height - clamp(ratio, 0, 1) * height;
+    if (index === 0) {
+      ctx.moveTo(x, y);
     } else {
-      destroy3DScene();
+      ctx.lineTo(x, y);
     }
   });
+
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+};
+
+const drawScope = (timestamp) => {
+  const canvas = selectors.labCanvas;
+  const ctx = canvas.getContext("2d");
+  const signal = getActiveScopeSignal();
+  const elapsed = (timestamp - state.scope.startedAt) / 1000;
+  const sampleCount = Math.max(90, Math.floor(canvas.width / 5));
+
+  if (!state.scope.isPaused) {
+    const value = clamp(signal.sample(elapsed), signal.min, signal.max);
+    state.scope.samples.push({ t: elapsed, value });
+    state.scope.samples = state.scope.samples.slice(-sampleCount);
+  }
+
+  drawScopeGrid(ctx, canvas.width, canvas.height);
+  drawScopeTrace(ctx, signal, state.scope.samples, canvas.width, canvas.height);
+  renderScopeReadouts(signal, state.scope.samples);
+  state.scope.animationId = requestAnimationFrame(drawScope);
+};
+
+const setScopeSignal = (signalId) => {
+  state.scope.activeSignal = signalId;
+  state.scope.samples = [];
+  [...selectors.scopeSignals.children].forEach((button) => {
+    button.classList.toggle("active", button.dataset.signal === signalId);
+  });
+};
+
+const initScope = () => {
+  selectors.scopeSignals.innerHTML = "";
+  scopeSignals.forEach((signal) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.signal = signal.id;
+    button.textContent = signal.label;
+    button.addEventListener("click", () => setScopeSignal(signal.id));
+    selectors.scopeSignals.appendChild(button);
+  });
+
+  selectors.scopePause.addEventListener("click", () => {
+    state.scope.isPaused = !state.scope.isPaused;
+    selectors.scopePause.textContent = state.scope.isPaused ? "Reanudar" : "Pausar";
+  });
+
+  window.addEventListener("resize", resizeScopeCanvas);
+  resizeScopeCanvas();
+  setScopeSignal(state.scope.activeSignal);
+  state.scope.startedAt = performance.now();
+  state.scope.animationId = requestAnimationFrame(drawScope);
 };
 
 const initApp = async () => {
@@ -534,14 +475,9 @@ const initApp = async () => {
   createProjectFilters(state.data.projects);
   renderProjects();
   initProjectInteractions();
-  initContactForm(state.data.profile.contact.email);
   initThemeToggle();
   initPrintButtons();
-  initTooltips();
-  init3DToggle();
-  if (state.is3dEnabled) {
-    await init3DScene();
-  }
+  initScope();
 };
 
 initApp();

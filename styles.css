@@ -224,34 +224,73 @@ body.theme-light .site-header {
 .lab-canvas {
   width: 100%;
   height: 320px;
-  background: radial-gradient(circle at top, rgba(45, 226, 208, 0.15), transparent 60%), #0c121a;
+  display: block;
+  background: #081018;
   border-radius: 16px;
   border: 1px solid rgba(45, 226, 208, 0.2);
 }
 
 body.theme-light .lab-canvas {
-  background: radial-gradient(circle at top, rgba(0, 158, 163, 0.2), transparent 60%), #f3f7fb;
+  background: #081018;
 }
 
-.lab-tooltips {
+.scope-toolbar {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
   flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.tooltip-tag {
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
+.scope-toolbar button {
   border: 1px solid var(--border);
-  font-size: 0.85rem;
+  background: rgba(45, 226, 208, 0.08);
   color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.42rem 0.62rem;
+  border-radius: 999px;
 }
 
-.tooltip-tag.active {
+.scope-toolbar button.active,
+.scope-toolbar button:hover,
+.scope-toolbar button:focus {
   border-color: rgba(45, 226, 208, 0.6);
   color: var(--text);
   background: rgba(45, 226, 208, 0.15);
+}
+
+.scope-readouts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.scope-readouts div {
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(8, 16, 24, 0.52);
+}
+
+.scope-readouts span,
+.scope-readouts strong {
+  display: block;
+}
+
+.scope-readouts span {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.scope-readouts strong {
+  color: var(--text);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
 }
 
 .hero-gridlines {
@@ -427,34 +466,8 @@ body.theme-light .lab-canvas {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
-.contact-form {
-  display: grid;
-  gap: 1rem;
-  padding: 1.5rem;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: var(--panel);
-}
-
-.contact-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  color: var(--text-muted);
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 0.7rem 0.8rem;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: var(--bg-alt);
-  color: var(--text);
-}
-
-.form-note {
-  color: var(--text-muted);
-  font-size: 0.85rem;
+.employer-contact {
+  max-width: 720px;
 }
 
 .contact-panel {
@@ -585,7 +598,6 @@ textarea:focus {
   .timeline-item,
   .project-card,
   .gallery-item,
-  .contact-form,
   .contact-panel {
     box-shadow: none;
     border: 1px solid #ddd;

@@ -2,9 +2,9 @@
   "profile": {
     "name": "Amed Murillo Estrada",
     "role": "Ingeniero Electromecánico · Ingeniero BMS",
-    "tagline": "Optimizo edificios inteligentes combinando control BMS, eficiencia energética y automatización confiable.",
-    "location": "Panamá, Ciudad de Panamá",
-    "bio": "Ingeniero Electromecánico enfocado en Building Management Systems, HVAC y automatización de infraestructura crítica. Especializado en integrar sensores, tableros eléctricos y protocolos industriales para garantizar operaciones resilientes.",
+    "tagline": "Inspección, mantenimiento y automatización de sistemas electromecánicos e infraestructura.",
+    "location": "Colón, Provincia de Colón, Panamá",
+    "bio": "Ingeniero Electromecánico con experiencia en inspección y levantamiento de sistemas en campo, supervisión de infraestructura electromecánica, mantenimiento preventivo y correctivo, análisis de variables operativas y gestión de proyectos técnicos. Experiencia en HVAC, distribución eléctrica, generación de respaldo, sistemas fotovoltaicos, bombeo, protección contra incendios y Building Management Systems.",
     "contact": {
       "email": "amedmurilloe@gmail.com",
       "phone": "+507 6328-6927",
@@ -13,16 +13,16 @@
     },
     "highlights": [
       {
-        "title": "Monitoreo, control y automatización",
-        "description": "Supervisión de HVAC, energía y seguridad en una sola plataforma BMS."
+        "title": "Inspección técnica en campo",
+        "description": "Levantamiento, verificación de condiciones operativas y seguimiento de acciones correctivas."
       },
       {
-        "title": "Automatización inteligente",
-        "description": "Lógicas PLC, secuencias de control y estrategias de eficiencia energética."
+        "title": "BMS y comisionamiento",
+        "description": "Arquitecturas de control, listas de puntos, pruebas funcionales y entrega técnica al cliente."
       },
       {
-        "title": "Operación crítica",
-        "description": "Monitoreo 24/7 con alarmas proactivas y análisis predictivo."
+        "title": "Infraestructura electromecánica",
+        "description": "HVAC, distribución eléctrica, respaldo energético, bombeo, fotovoltaico y protección contra incendios."
       }
     ]
   },
@@ -30,16 +30,20 @@
     {
       "category": "BMS & HVAC",
       "items": [
-        { "name": "Contemporary Controls", "level": "Avanzado" }
+        { "name": "Building Management Systems", "level": "Avanzado" },
+        { "name": "HVAC", "level": "Avanzado" },
+        "Listas de puntos",
+        "Secuencias de operación",
+        "Comisionamiento"
       ]
     },
     {
       "category": "Automatización",
       "items": [
         { "name": "PLC", "level": "Avanzado" },
-        { "name": "SCADA", "level": "Intermedio" },
         "Secuencias de control",
-        "Instrumentación"
+        "Instrumentación",
+        "Controladores y sensores"
       ]
     },
     {
@@ -47,8 +51,8 @@
       "items": [
         { "name": "BACnet", "level": "Avanzado" },
         { "name": "Modbus", "level": "Avanzado" },
-        "KNX",
-        "TCP/IP Industrial"
+        "TCP/IP Industrial",
+        "Redes y telecomunicaciones"
       ]
     },
     {
@@ -56,101 +60,147 @@
       "items": [
         { "name": "Python", "level": "Intermedio" },
         { "name": "JavaScript", "level": "Intermedio" },
-        "AutoCAD"
+        { "name": "AutoCAD", "level": "Avanzado" },
+        { "name": "Excel", "level": "Avanzado" },
+        "Word",
+        "PowerPoint"
+      ]
+    },
+    {
+      "category": "Credenciales",
+      "items": [
+        "Idóneo en Ingeniería Electromecánica",
+        "Licencia de conducir tipo D",
+        "Inglés avanzado",
+        "Español nativo"
       ]
     }
   ],
   "experience": [
     {
-      "period": "2024 - Actual",
+      "period": "2026 - Actualidad",
       "title": "Ingeniero BMS",
       "company": "Dynatek",
-      "summary": "Gestión de sistemas de control centralizado, puesta en marcha de HVAC y optimización energética en edificios."
+      "summary": "Gestión y ejecución de proyectos BMS desde levantamiento e ingeniería hasta implementación, puesta en marcha y entrega al cliente. Desarrollo de arquitecturas de control, listas de puntos, diagramas, secuencias de operación y pruebas funcionales."
+    },
+    {
+      "period": "Nov 2024 - Actualidad",
+      "title": "Analista IoT",
+      "company": "Maxia Latam",
+      "summary": "Levantamiento, inspección, diseño, comisionamiento, implementación y pase de proyectos BMS. Implementación de sistemas eléctricos, mecánicos, electrónicos, redes y telecomunicaciones, con soporte y mantenimiento periódico en sitio."
+    },
+    {
+      "period": "Ago 2023 - Nov 2024",
+      "title": "Supervisor de Instalaciones",
+      "company": "Motta Internacional S.A.",
+      "summary": "Supervisión de operación y mantenimiento de infraestructura electromecánica con enfoque en disponibilidad, confiabilidad y continuidad operativa. Coordinación de mantenimientos HVAC, generación de respaldo, fotovoltaico, distribución eléctrica, bombeo y protección contra incendios."
+    },
+    {
+      "period": "2022",
+      "title": "Licenciatura en Ingeniería Electromecánica",
+      "company": "Universidad Tecnológica de Panamá",
+      "summary": "Formación profesional en ingeniería electromecánica."
     }
   ],
   "certifications": [
     {
-      "name": "Certificación BMS",
-      "issuer": "[Institución]",
+      "name": "Foundations of Project Management",
+      "issuer": "Google · Coursera",
       "year": "2023"
     },
     {
-      "name": "Eficiencia energética en edificios",
-      "issuer": "[Institución]",
-      "year": "2021"
+      "name": "Idóneo en Ingeniería Electromecánica",
+      "issuer": "Credencial profesional",
+      "year": "Activo"
     }
   ],
   "projects": [
     {
-      "id": "bms-organo-judicial",
-      "title": "BMS unidades manejadoras de aire - Organo Judicial",
-      "description": "Integración de HVAC.",
-      "longDescription": "Sistema BMS centralizado para 4 unidades manejadoras de aire.",
-      "challenges": "Adaptar equipos no diseñados nativamente para un integración BMS.",
-      "solution": "Gateway BACnet/Modbus con lógica de redundancia y paneles con KPIs clave.",
-      "impact": "Reducción del 18% en consumo energético y mejora del tiempo de respuesta a fallas.",
-      "stack": ["BACnet", "Niagara", "Power BI", "SQL"],
-      "categories": ["BMS", "HVAC"],
+      "id": "bms-gestion-energetica",
+      "title": "Piloto BMS de gestión energética",
+      "description": "Automatización HVAC, monitoreo energético y adquisición de datos para convertir operación real en decisiones de eficiencia.",
+      "longDescription": "Implementación piloto de BMS con control de manejadoras de aire, medición energética, registro histórico y dashboards operativos. El proyecto combinó automatización HVAC, adquisición de datos, comunicaciones remotas y análisis de consumo.",
+      "challenges": "Integrar controladores, medición energética, conectividad remota y almacenamiento histórico en una arquitectura operativa y trazable.",
+      "solution": "Controladores BMS con comunicación BACnet/IP, gateway industrial con procesamiento en Python, base de datos de series temporales y visualización de variables críticas.",
+      "impact": "Permitió pasar de operación con visibilidad limitada a una plataforma con históricos, tendencias y base técnica para optimización energética.",
+      "stack": ["BMS", "HVAC", "BACnet/IP", "Python", "InfluxDB", "Dashboards"],
+      "categories": ["BMS", "HVAC", "Energía", "IoT"],
       "links": [
-        { "label": "Ficha técnica", "url": "https://example.com" },
-        { "label": "Dashboard", "url": "https://example.com" }
+        { "label": "CV", "url": "curriculum/AMED%20MURILLO%20ESTRADA.pdf" }
       ]
     },
     {
-      "id": "laboratorio-automatizacion",
-      "title": "Laboratorio de automatización industrial",
-      "description": "Banco de pruebas para PLC y sensores con protocolos industriales.",
-      "longDescription": "Diseño de un laboratorio modular para validar controladores, sensores y estrategias de mantenimiento predictivo.",
-      "challenges": "Escalar pruebas sin comprometer seguridad eléctrica.",
-      "solution": "Tablero modular con protección selectiva y simuladores de carga.",
-      "impact": "Aceleración del 30% en tiempos de prueba y documentación.",
-      "stack": ["PLC", "Modbus", "SCADA"],
-      "categories": ["Automatización", "I+D"],
+      "id": "bms-vav-oficinas",
+      "title": "Control HVAC VAV para oficinas corporativas",
+      "description": "Programación e integración BMS para zonas VAV y manejadoras con control de presión y temperatura.",
+      "longDescription": "Implementación de estrategias HVAC de volumen de aire variable para oficinas corporativas, integrando zonas independientes con el control central de manejadoras de aire.",
+      "challenges": "Coordinar demanda térmica por zona, presión estática de suministro y temperatura de aire sin sacrificar estabilidad ni confort.",
+      "solution": "Programación de cajas VAV, secuencias de manejadoras, setpoints operativos, puntos BMS, pruebas funcionales y troubleshooting de comunicación.",
+      "impact": "Experiencia práctica en coordinación AHU-VAV, modulación de flujo de aire y automatización HVAC orientada a eficiencia energética.",
+      "stack": ["VAV", "AHU", "BMS", "Presión estática", "Temperatura", "Commissioning"],
+      "categories": ["BMS", "HVAC", "Automatización"],
       "links": [
-        { "label": "Procedimientos", "url": "https://example.com" }
+        { "label": "CV", "url": "curriculum/AMED%20MURILLO%20ESTRADA.pdf" }
       ]
     },
     {
-      "id": "monitoreo-energia",
-      "title": "Monitoreo energético inteligente",
-      "description": "Lectura remota de medidores y alertas de eficiencia.",
-      "longDescription": "Sistema de monitoreo energético con reportes automatizados para equipos críticos y cargas HVAC.",
-      "challenges": "Normalizar datos en tiempo real con múltiples medidores.",
-      "solution": "Pipeline de datos con dashboards e indicadores de desempeño.",
-      "impact": "Identificación de pérdidas energéticas y ajustes de control.",
-      "stack": ["IoT", "BACnet", "Data Studio"],
-      "categories": ["Energía", "BMS"],
+      "id": "bms-hospitalario-infraestructura-critica",
+      "title": "BMS hospitalario para infraestructura crítica",
+      "description": "Integración multidisciplinaria de HVAC, agua helada, energía de respaldo, medición eléctrica e infraestructura auxiliar.",
+      "longDescription": "Participación en proyectos BMS hospitalarios de alta complejidad, centralizando variables operativas, alarmas y estados de múltiples sistemas electromecánicos críticos.",
+      "challenges": "Unificar subsistemas mecánicos, eléctricos e hidráulicos con necesidades altas de disponibilidad, diagnóstico y respuesta operativa.",
+      "solution": "Configuración de puntos BMS, secuencias de control, alarmas, gráficos de supervisión, pruebas funcionales y verificación de comunicaciones entre subsistemas.",
+      "impact": "Fortaleció experiencia en integración BMS para instalaciones críticas donde la supervisión continua y el diagnóstico rápido son esenciales.",
+      "stack": ["BMS", "Hospitalario", "HVAC", "Chillers", "Alarmas", "Infraestructura crítica"],
+      "categories": ["BMS", "HVAC", "Infraestructura"],
       "links": [
-        { "label": "Reporte", "url": "https://example.com" }
+        { "label": "CV", "url": "curriculum/AMED%20MURILLO%20ESTRADA.pdf" }
+      ]
+    },
+    {
+      "id": "bms-integracion-multisistema",
+      "title": "Integración BMS multisistema",
+      "description": "Centralización de monitoreo para HVAC, medición eléctrica, agua, combustible y sistemas auxiliares.",
+      "longDescription": "Participación en implementación BMS para una instalación de gran escala, con integración de variables operacionales de distintos subsistemas para apoyar operación, mantenimiento y diagnóstico.",
+      "challenges": "Ordenar señales, alarmas y estados de múltiples disciplinas en una plataforma útil para personal técnico.",
+      "solution": "Automatización HVAC, configuración de puntos, monitoreo de variables, pruebas funcionales, puesta en marcha y troubleshooting.",
+      "impact": "Aportó experiencia en supervisión multidisciplinaria y puesta en marcha de sistemas BMS complejos.",
+      "stack": ["BMS", "HVAC", "Medición eléctrica", "Alarmas", "Troubleshooting"],
+      "categories": ["BMS", "Infraestructura", "Automatización"],
+      "links": [
+        { "label": "CV", "url": "curriculum/AMED%20MURILLO%20ESTRADA.pdf" }
       ]
     }
   ],
   "gallery": [
     {
       "title": "Sala de control",
-      "description": "Paneles con alertas jerarquizadas y KPIs en tiempo real.",
+      "description": "Supervisión centralizada de variables operativas y estados críticos del edificio.",
       "tag": "BMS"
     },
     {
-      "title": "Mantenimiento predictivo",
-      "description": "Monitoreo de vibraciones y temperatura en equipos críticos.",
+      "title": "Inspección y mantenimiento",
+      "description": "Seguimiento de mantenimientos preventivos, correctivos y acciones en sitio.",
       "tag": "HVAC"
     },
     {
       "title": "Planos técnicos",
-      "description": "Esquemas unifilares y layout de tableros para automatización.",
+      "description": "Documentación de ingeniería mediante AutoCAD, esquemas de control y planos técnicos.",
       "tag": "Automatización"
     }
   ],
   "contact": {
-    "message": "Disponible para proyectos de implementación BMS, commissioning y optimización energética.",
+    "message": "Información de contacto profesional para oportunidades laborales en ingeniería electromecánica, BMS, HVAC, automatización y mantenimiento.",
     "channels": [
-      { "label": "Correo", "url": "mailto:amed@example.com" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/amed-murillo" }
+      { "label": "Correo", "url": "mailto:amedmurilloe@gmail.com" },
+      { "label": "Teléfono", "url": "tel:+50763286927" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/amed-murillo-estrada-a84397267/" },
+      { "label": "CV", "url": "curriculum/AMED%20MURILLO%20ESTRADA.pdf" }
     ]
   },
   "footerLinks": [
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/amed-murillo" },
-    { "label": "GitHub", "url": "https://github.com/amed-murillo" }
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/amed-murillo-estrada-a84397267/" },
+    { "label": "GitHub", "url": "https://github.com/sitoame" },
+    { "label": "CV", "url": "curriculum/AMED%20MURILLO%20ESTRADA.pdf" }
   ]
 }
