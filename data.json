@@ -190,7 +190,7 @@
     }
   ],
   "contact": {
-    "message": "Información de contacto profesional para oportunidades laborales en ingeniería electromecánica, BMS, HVAC, automatización y mantenimiento.",
+    "message": "Información de contacto.",
     "channels": [
       { "label": "Correo", "url": "mailto:amedmurilloe@gmail.com" },
       { "label": "Teléfono", "url": "tel:+50763286927" },
